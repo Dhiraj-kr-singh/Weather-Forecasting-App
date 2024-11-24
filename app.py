@@ -15,7 +15,7 @@ states = ["Kolkata", "Meghalaya", "Goa", "Mizoram"]
 years = [2023, 2024]  # You can dynamically fetch years from your dataset
 
 # Title
-st.title("Rainfall Prediction App")
+st.title("Flood & Drought Detection")
 
 # User input for selecting state
 state = st.selectbox("Select State", states)
