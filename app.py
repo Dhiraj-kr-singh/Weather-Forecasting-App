@@ -14,6 +14,10 @@ with open("label_encoder_state.pkl", "rb") as state_file:
 states = ["Kolkata", "Meghalaya", "Goa", "Mizoram"]
 years = [2023, 2024]  # You can dynamically fetch years from your dataset
 
+# Thresholds for categorization (example values, replace with actual thresholds)
+DROUGHT_THRESHOLD = 500  # mm (example)
+FLOOD_THRESHOLD = 2000  # mm (example)
+
 # Title
 st.title("Flood & Drought Detection")
 
@@ -35,8 +39,17 @@ if st.button("Predict Rainfall"):
         # Make the prediction
         prediction = model.predict(input_data)[0]
         
+        # Determine rainfall category
+        if prediction < DROUGHT_THRESHOLD:
+            status = "Drought"
+        elif prediction > FLOOD_THRESHOLD:
+            status = "Flood"
+        else:
+            status = "Normal"
+        
         # Display the result
-        st.success(f"The predicted average rainfall in {state} foor {year} is {prediction:.2f} mm.")
+        st.success(f"The predicted average rainfall in {state} for {year} is {prediction:.2f} mm.")
+        st.info(f"This is categorized as a '{status}' situation.")
     
     except Exception as e:
         st.error(f"Error: {e}")
