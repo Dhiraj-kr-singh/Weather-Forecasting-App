@@ -36,7 +36,7 @@ if st.button("Predict Rainfall"):
         prediction = model.predict(input_data)[0]
         
         # Display the result
-        st.success(f"The predicted average rainfall in {state} for {year} is {prediction:.2f} mm.")
+        st.success(f"The predicted average rainfall in {state} foor {year} is {prediction:.2f} mm.")
     
     except Exception as e:
         st.error(f"Error: {e}")
